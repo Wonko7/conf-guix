@@ -56,8 +56,43 @@
     (cons* (file-system
              (mount-point "/")
              (device "/dev/mapper/vault")
-;; (options "subvol=_live/@guix")
-(needed-for-boot? #t)
+	     ;; (options "subvol=_live/@guix")
+	     (needed-for-boot? #t)
+             (type "btrfs")
+             (dependencies mapped-devices))
+	   (file-system
+             (mount-point "/mnt/vault")
+             (device "/dev/mapper/vault")
+             (type "btrfs")
+             (dependencies mapped-devices))
+	   (file-system
+             (mount-point "/home")
+             (device "/dev/mapper/vault")
+	     (options "subvol=_live/@home")
+             (type "btrfs")
+             (dependencies mapped-devices))
+	   (file-system
+             (mount-point "/data")
+             (device "/dev/mapper/vault")
+	     (options "subvol=_live/@data")
+             (type "btrfs")
+             (dependencies mapped-devices))
+	   (file-system
+             (mount-point "/work")
+             (device "/dev/mapper/vault")
+	     (options "subvol=_live/@work")
+             (type "btrfs")
+             (dependencies mapped-devices))
+	   (file-system
+             (mount-point "/junkyard")
+             (device "/dev/mapper/vault")
+	     (options "subvol=_live/@junkyard")
+             (type "btrfs")
+             (dependencies mapped-devices))
+	   (file-system
+             (mount-point "/swap")
+             (device "/dev/mapper/vault")
+	     (options "subvol=_live/@swap")
              (type "btrfs")
              (dependencies mapped-devices))
            (file-system
