@@ -15,7 +15,7 @@
 
   (locale "en_GB.utf8")
   (timezone "Europe/Paris")
-  (keyboard-layout (keyboard-layout "us" "dvorak"))
+  (keyboard-layout (keyboard-layout "us" "dvorak" #:options '("ctrl:nocaps")))
   (host-name "enterprise")
   (users (cons* (user-account
                   (name "wjc")
