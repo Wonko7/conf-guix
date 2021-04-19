@@ -1,0 +1,20 @@
+(specifications->manifest
+ '(
+   "calibre"
+   "conky"
+   "dunst"
+   "ghc-xmonad-contrib"
+   "gimp"
+   "krita"
+   "mpv"
+   "rofi"
+   "transmission"
+   "vlc"
+   "wireshark"
+   "wmctrl"
+   "xbindkeys"
+   "xdotool"
+   "xmonad" 
+   "xournal"
+   "xscreensaver"
+   ))
