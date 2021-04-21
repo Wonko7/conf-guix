@@ -1,7 +1,10 @@
 ;; This is an operating system configuration generated
 ;; by the graphical installer.
 
-(use-modules (gnu))
+(use-modules (gnu)
+             (gnu packages shells)
+             (srfi srfi-1))
+
 ;; Import nonfree linux module.
 (use-modules (nongnu packages linux)
              (nongnu system linux-initrd))
@@ -22,6 +25,7 @@
                   (comment "Wjc")
                   (group "users")
                   (home-directory "/home/wjc")
+                  (shell (file-append zsh "/bin/zsh"))
                   (supplementary-groups
                     '("wheel" "netdev" "audio" "video")))
                 %base-user-accounts))
@@ -32,15 +36,15 @@
   (services
     (append
       (list (service xfce-desktop-service-type)
-            (service enlightenment-desktop-service-type)
             (service openssh-service-type)
             (service tor-service-type)
-            (set-xorg-configuration
-              (xorg-configuration
-                (keyboard-layout keyboard-layout)))
-        )
-      ;;%base-services))
-      %desktop-services))
+            (service slim-service-type (slim-configuration (display ":0")
+                                                           (vt "vt7")
+                                                           (xorg-configuration (xorg-configuration
+                                                                                 (keyboard-layout keyboard-layout))))))
+      (remove (lambda (s) 
+                (eq? (service-kind s) gdm-service-type))
+              %desktop-services)))
   (bootloader
     (bootloader-configuration
       (bootloader grub-efi-bootloader)
@@ -56,43 +60,43 @@
     (cons* (file-system
              (mount-point "/")
              (device "/dev/mapper/vault")
-	     ;; (options "subvol=_live/@guix")
-	     (needed-for-boot? #t)
+             ;; (options "subvol=_live/@guix")
+             (needed-for-boot? #t)
              (type "btrfs")
              (dependencies mapped-devices))
-	   (file-system
+           (file-system
              (mount-point "/mnt/vault")
              (device "/dev/mapper/vault")
              (type "btrfs")
              (dependencies mapped-devices))
-	   (file-system
+           (file-system
              (mount-point "/home")
              (device "/dev/mapper/vault")
-	     (options "subvol=_live/@home")
+             (options "subvol=_live/@home")
              (type "btrfs")
              (dependencies mapped-devices))
-	   (file-system
+           (file-system
              (mount-point "/data")
              (device "/dev/mapper/vault")
-	     (options "subvol=_live/@data")
+             (options "subvol=_live/@data")
              (type "btrfs")
              (dependencies mapped-devices))
-	   (file-system
+           (file-system
              (mount-point "/work")
              (device "/dev/mapper/vault")
-	     (options "subvol=_live/@work")
+             (options "subvol=_live/@work")
              (type "btrfs")
              (dependencies mapped-devices))
-	   (file-system
+           (file-system
              (mount-point "/junkyard")
              (device "/dev/mapper/vault")
-	     (options "subvol=_live/@junkyard")
+             (options "subvol=_live/@junkyard")
              (type "btrfs")
              (dependencies mapped-devices))
-	   (file-system
+           (file-system
              (mount-point "/swap")
              (device "/dev/mapper/vault")
-	     (options "subvol=_live/@swap")
+             (options "subvol=_live/@swap")
              (type "btrfs")
              (dependencies mapped-devices))
            (file-system
