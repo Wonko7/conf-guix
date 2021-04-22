@@ -3,6 +3,8 @@
 
 (use-modules (gnu)
              (gnu packages shells)
+             (gnu packages networking)
+             (gnu packages xdisorg)
              (srfi srfi-1))
 
 ;; Import nonfree linux module.
@@ -42,9 +44,13 @@
                                                            (vt "vt7")
                                                            (xorg-configuration (xorg-configuration
                                                                                  (keyboard-layout keyboard-layout))))))
-      (remove (lambda (s) 
+      (remove (lambda (s)
                 (eq? (service-kind s) gdm-service-type))
               %desktop-services)))
+  (setuid-programs (cons*
+                     #~(string-append #$wireshark "/bin/dumpcap")
+                     #~(string-append #$xscreensaver "/bin/xscreensaver")
+                     %setuid-programs))
   (bootloader
     (bootloader-configuration
       (bootloader grub-efi-bootloader)
