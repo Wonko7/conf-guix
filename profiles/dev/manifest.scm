@@ -1,0 +1,10 @@
+(specifications->manifest
+ '(
+   "gcc-toolchain"
+   "gdb"
+   "m4"
+   "make"
+   "docker"
+   "docker-compose"
+   ;;"docker-cli"
+   ))

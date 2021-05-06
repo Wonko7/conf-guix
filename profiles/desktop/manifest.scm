@@ -4,6 +4,7 @@
     "calibre"
     "cairo" ;; conky
     "conky"
+    "desktop-file-utils" ;; xdg capture firefox/emacsclient
     "dunst"
     "gimp"
     "jonaburg-picom"
@@ -22,6 +23,7 @@
     "redshift"
     "rofi"
     "rxvt-unicode"
+    "setxkbmap"
     "transmission"
     "unclutter"
     "vlc"
@@ -29,6 +31,7 @@
     "wireshark"
     "wmctrl"
     "xbindkeys"
+    "xclip"
     "xdotool"
     "xev"
     "xeyes"
