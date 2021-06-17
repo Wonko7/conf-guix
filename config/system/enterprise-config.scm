@@ -35,7 +35,8 @@
                 %base-user-accounts))
   (packages
    (append
-    (map specification->package '("nss-certs" "isc-dhcp" "iwd" "wireguard-tools" "iproute2" "iw"))
+    (map specification->package '("nss-certs" "isc-dhcp" "iwd" "wireguard-tools" "iproute2" "iw"
+                                  "rsync" "zsh"))
     ;;(list (specifications->manifest '("nss-certs" "dhcpcd" "iwd" "wireguard-tools" "iproute2" "iw")))
     ;;(list (specifications->package "nss-certs" "dhcpcd" "iwd" "wireguard-tools" "iproute2" "iw"))
     %base-packages))

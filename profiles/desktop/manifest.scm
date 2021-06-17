@@ -9,10 +9,12 @@
     "gimp"
     "jonaburg-picom"
     "krita"
+    "light"
     "lua" ;; conky
     "lua-lgi" ;; conky
     "lxqt-panel"
     "lxqt-qtplugin"
+    "lxrandr"
     "pulseaudio" ;; for pactl
     "mesa-utils"
     "mpv"
@@ -39,6 +41,7 @@
     "xmodmap"
     "xournal"
     "xprop"
+    "xrandr"
     "xscreensaver"
     "xset"
     "zathura"

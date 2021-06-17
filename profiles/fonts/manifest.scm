@@ -1,7 +1,7 @@
 (specifications->manifest
  '(
    "font-jetbrains-mono"
-   ;;"font-google-noto"
+   "font-google-noto"
    "font-iosevka"
    "font-iosevka"
    "font-inconsolata"

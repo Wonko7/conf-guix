@@ -6,5 +6,7 @@
    "make"
    "docker"
    "docker-compose"
+   "guile-colorized"
+   "perl"
    ;;"docker-cli"
    ))

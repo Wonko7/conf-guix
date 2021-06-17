@@ -1,9 +1,17 @@
 (specifications->manifest
  '(
+   ;; devops
+   "awscli"
+   ;; lang env
    "ocaml"
    "opam"
-   "postgresql"
    "node"
+   ;; db
+   "postgresql"
+   "mysql"
+   "mariadb-connector-c"
+   "elasticsearch"
+   ;; deps
    "openssl"
    "pcre"
    "zlib"
@@ -12,10 +20,7 @@
    "gdbm"
    "libev"
    "pkg-config"
-   "mysql"
-   "mariadb-connector-c"
    "m4"
+   "ruby-sass"
    "sassc"
-   ;;"icedtea"
-   "elasticsearch"
    ))
