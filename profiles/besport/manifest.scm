@@ -2,6 +2,7 @@
  '(
    ;; devops
    "awscli"
+   "docker-cli"
    ;; lang env
    "ocaml"
    "opam"

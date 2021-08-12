@@ -6,13 +6,15 @@
              (gnu packages shells)
              (gnu packages networking)
              (gnu packages xdisorg)
+             (gnu system setuid)
+             (guix gexp)
              (srfi srfi-1))
 
 ;; Import nonfree linux module.
 (use-modules (nongnu packages linux)
              (nongnu system linux-initrd))
 
-(use-service-modules desktop networking ssh xorg)
+(use-service-modules desktop networking ssh xorg docker)
 
 (operating-system
   (kernel linux)
@@ -31,7 +33,7 @@
                   (home-directory "/home/wjc")
                   (shell (file-append zsh "/bin/zsh"))
                   (supplementary-groups
-                    '("wheel" "netdev" "audio" "video")))
+                    '("docker" "wheel" "netdev" "audio" "video")))
                 %base-user-accounts))
   (packages
    (append
@@ -45,6 +47,7 @@
     (list (service xfce-desktop-service-type)
           (service openssh-service-type)
           (service tor-service-type)
+          (service docker-service-type)
           (service slim-service-type (slim-configuration (display ":0")
                                                          (vt "vt7")
                                                          (xorg-configuration (xorg-configuration
@@ -52,10 +55,13 @@
     (remove (lambda (s)
               (eq? (service-kind s) gdm-service-type))
             %desktop-services)))
-  (setuid-programs (cons*
-                    #~(string-append #$wireshark "/bin/dumpcap")
-                    #~(string-append #$xscreensaver "/bin/xscreensaver")
-                    %setuid-programs))
+
+  (setuid-programs
+   (cons*
+    (setuid-program (program #~(file-append #$wireshark "/bin/dumpcap")))
+    (setuid-program (program #~(file-append #$xscreensaver "/bin/xscreensaver")))
+    %setuid-programs))
+
   (mapped-devices
    (list (mapped-device
           (source
