@@ -9,8 +9,6 @@
    "node"
    ;; db
    "postgresql"
-   "mysql"
-   "mariadb-connector-c"
    "elasticsearch"
    ;; deps
    "openssl"
