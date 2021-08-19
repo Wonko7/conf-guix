@@ -58,8 +58,8 @@
 
   (setuid-programs
    (cons*
-    (setuid-program (program #~(file-append #$wireshark "/bin/dumpcap")))
-    (setuid-program (program #~(file-append #$xscreensaver "/bin/xscreensaver")))
+    (setuid-program (program (file-append wireshark "/bin/dumpcap")))
+    (setuid-program (program (file-append xscreensaver "/bin/xscreensaver")))
     %setuid-programs))
 
   (mapped-devices
