@@ -5,6 +5,7 @@
     "cowsay"
     "bash"
     "bat"
+    "cryptsetup" ;; add fs tools
     "dash"
     "darcs"
     "emacs"
@@ -29,6 +30,7 @@
     "jq"
     "mksh"
     "neofetch"
+    "net-tools"
     "ncurses" ;; clear! tic (terminfo)
     "nmap"
     "mercurial"
