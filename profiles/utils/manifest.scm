@@ -30,6 +30,7 @@
     "imagemagick"
     "jq"
     "mksh"
+    "mtr"
     "neofetch"
     "net-tools"
     "ncurses" ;; clear! tic (terminfo)
@@ -43,6 +44,7 @@
     "pinentry-qt"
     "pinentry-tty"
     "plantuml"
+    "util-linux"
     "recutils"
     "ripgrep"
     "rsync"
