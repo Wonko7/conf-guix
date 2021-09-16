@@ -9,6 +9,7 @@
     "dash"
     "darcs"
     "emacs"
+    "emacs-emacsql-sqlite3"
     "emacs-guix"
     "exa"
     "fd"
