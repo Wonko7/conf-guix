@@ -2,6 +2,7 @@
  '(
    "gcc-toolchain"
    "gdb"
+   "gnuplot"
    "m4"
    "make"
    "docker"

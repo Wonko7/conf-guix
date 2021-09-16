@@ -5,6 +5,7 @@
     "btrfs-progs"
     "cowsay"
     "bash"
+    "bat"
     "cryptsetup" ;; add fs tools
     "dash"
     "darcs"
@@ -29,9 +30,10 @@
     "mksh"
     "mtr"
     "neofetch"
-    "mercurial"
+    "net-tools"
     "ncurses" ;; clear! tic (terminfo)
     "nmap"
+    "mercurial"
     "onionshare"
     "pandoc"
     "password-store"

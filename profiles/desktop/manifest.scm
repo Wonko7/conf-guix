@@ -6,6 +6,7 @@
     "conky"
     "desktop-file-utils" ;; xdg capture firefox/emacsclient
     "dunst"
+    "feh"
     "gimp"
     "jonaburg-picom"
     "krita"
@@ -19,6 +20,7 @@
     "mesa-utils"
     "mpv"
     "oxygen-icons"
+    "pscircle"
     "qlipper"
     "qtbase"
     "qtsvg"
@@ -26,6 +28,7 @@
     "rofi"
     "rxvt-unicode"
     "setxkbmap"
+    "tint2"
     "transmission"
     "unclutter"
     "vlc"

@@ -7,4 +7,7 @@
    "font-inconsolata"
    "font-hack"
    "font-openmoji"
+   "unicode-emoji"
+   "font-gnu-unifont"
+   "font-adobe75dpi"
    ))
