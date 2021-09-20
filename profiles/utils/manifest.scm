@@ -24,6 +24,8 @@
     "hunspell-dict-en-gb-ize"
     "git"
     "gnupg"
+    "gnuplot"
+    "graphviz"
     "imagemagick"
     "jq"
     "util-linux"
