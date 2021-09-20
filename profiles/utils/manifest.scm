@@ -2,11 +2,9 @@
   '(
     "bc"
     "bmon"
-    "btrfs-progs"
     "cowsay"
     "bash"
     "bat"
-    "cryptsetup" ;; add fs tools
     "dash"
     "darcs"
     "emacs"
@@ -28,11 +26,8 @@
     "graphviz"
     "imagemagick"
     "jq"
-    "util-linux"
     "mksh"
-    "mtr"
     "neofetch"
-    "net-tools"
     "ncurses" ;; clear! tic (terminfo)
     "nmap"
     "mercurial"
@@ -72,19 +67,4 @@
     "youtube-dl"
     "zsh"
     "pinentry" "pinentry-qt" "pinentry-tty"
-    ;; "x2x" FIXME add this
-    ;; net
-    "iwd"
-    "bind:utils"
-    "wireguard-tools" ;;
-    "openresolv" ;; network stuff in a separate file?
-    "isc-dhcp"
-    "tcpdump"
-    "wget"
-    "curl"
-    "socat"
-    "netcat-openbsd"
-    "nftables"
-    "inetutils" ;; hostname, telnet, ftp
-    "iftop"
     ))
