@@ -8,11 +8,22 @@
              (gnu packages xdisorg)
              (gnu system setuid)
              (guix gexp)
-             (srfi srfi-1))
+             (ice-9 format)
+             (srfi srfi-1)
+             (srfi srfi-88))
 
 ;; Import nonfree linux module.
 (use-modules (nongnu packages linux)
              (nongnu system linux-initrd))
+
+(define host-str (getenv "HOST"))
+(define system-type #:solo-dolo)
+
+(cond ((or (string=? host "enterprise")
+           (string=? host "yggdrasill")) (let ()
+                                           (display (string-append "building for " host))
+                                           (set! host (string->keyword host))))
+      (#t (error (string-append "unknown host: " host) 69)))
 
 (use-service-modules desktop networking ssh xorg docker)
 
@@ -25,7 +36,7 @@
   (locale "en_GB.utf8")
   (timezone "Europe/Paris")
   (keyboard-layout (keyboard-layout "us" "dvorak" #:options '("ctrl:nocaps")))
-  (host-name "enterprise")
+  (host-name (keyword->string host))
   (users (cons* (user-account
                   (name "wjc")
                   (comment "Wjc")
@@ -39,22 +50,26 @@
    (append
     (map specification->package '("nss-certs" "isc-dhcp" "iwd" "wireguard-tools" "iproute2" "iw"
                                   "rsync" "zsh"))
-    ;;(list (specifications->manifest '("nss-certs" "dhcpcd" "iwd" "wireguard-tools" "iproute2" "iw")))
-    ;;(list (specifications->package "nss-certs" "dhcpcd" "iwd" "wireguard-tools" "iproute2" "iw"))
     %base-packages))
   (services
-   (append
-    (list (service xfce-desktop-service-type)
+   (cons* (service xfce-desktop-service-type)
           (service openssh-service-type)
           (service tor-service-type)
           (service docker-service-type)
-          (service slim-service-type (slim-configuration (display ":0")
-                                                         (vt "vt7")
-                                                         (xorg-configuration (xorg-configuration
-                                                                              (keyboard-layout keyboard-layout))))))
-    (remove (lambda (s)
-              (eq? (service-kind s) gdm-service-type))
-            %desktop-services)))
+          (service slim-service-type
+                   (slim-configuration (display ":0")
+                                       (vt "vt7")
+                                       (auto-login? #t)
+                                       (default-user "wjc")
+                                       (xorg-configuration (xorg-configuration
+                                                            (keyboard-layout keyboard-layout)))))
+          (service guix-publish-service-type
+                   (guix-publish-configuration
+                    (host "0.0.0.0")
+                    (port 1691)
+                    (advertise? #t)))
+          (modify-services %desktop-services
+                           (delete gdm-service-type))))
 
   (setuid-programs
    (cons*
