@@ -1,13 +1,19 @@
 (specifications->manifest
  '(
+   "clojure"
+   "clojure-tools"
    "gcc-toolchain"
    "gdb"
    "gnuplot"
    "m4"
    "make"
+   "node"
    "docker"
    "docker-compose"
    "guile-colorized"
    "perl"
-   ;;"docker-cli"
+   "ocaml"
+   ;;"rust-cargo"
+   "rust"
+   "rust:cargo"
    ))

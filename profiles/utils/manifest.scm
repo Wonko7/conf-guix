@@ -21,6 +21,7 @@
     "hunspell-dict-en-gb"
     "hunspell-dict-en-gb-ize"
     "git"
+    "git-annex"
     "gnupg"
     "gnuplot"
     "graphviz"
@@ -65,6 +66,6 @@
     "xdg-user-dirs"
     "xdg-utils"
     "youtube-dl"
+    "zip"
     "zsh"
-    "pinentry" "pinentry-qt" "pinentry-tty"
     ))

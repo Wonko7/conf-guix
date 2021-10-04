@@ -11,6 +11,8 @@
    "postgresql"
    "elasticsearch"
    ;; deps
+   "curl"
+   ;; "ocaml-ocurl"
    "openssl"
    "pcre"
    "zlib"
