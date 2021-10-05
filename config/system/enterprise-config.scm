@@ -16,16 +16,23 @@
 (use-modules (nongnu packages linux)
              (nongnu system linux-initrd))
 
-(define host-str (getenv "HOST"))
-(define system-type #:solo-dolo)
+(define host (getenv "HOST"))
 
 (cond ((or (string=? host "enterprise")
            (string=? host "yggdrasill")) (let ()
-                                           (display (string-append "building for " host))
+                                           (display (string-append "building for " host "\n"))
                                            (set! host (string->keyword host))))
-      (#t (error (string-append "unknown host: " host) 69)))
+      (#t (error (string-append "unknown host: " host "\n") 69)))
 
 (use-service-modules desktop networking ssh xorg docker)
+
+(define machine-config '((#:enterprise .
+                          ((#:uuids .
+                            ((#:vault . "125bf330-ff27-45d1-9cce-1dd96cb14975")
+                             (#:efi . "6C21-E416")))))
+                         (#:yggdrasill . 2)))
+(define (nassq alist ks)
+  (fold (lambda (k al) (assq-ref al k)) alist ks))
 
 (operating-system
   (kernel linux)
@@ -80,7 +87,7 @@
   (mapped-devices
    (list (mapped-device
           (source
-           (uuid "125bf330-ff27-45d1-9cce-1dd96cb14975"))
+           (uuid (nassq machine-config `(,host #:uuids #:vault))))
           (target "vault")
           (type luks-device-mapping))))
   (file-systems
@@ -129,7 +136,7 @@
           ;;   (dependencies mapped-devices))
           (file-system
            (mount-point "/boot/efi")
-           (device (uuid "6C21-E416" 'fat32))
+           (device (uuid (nassq machine-config `(,host #:uuids #:efi)) 'fat32))
            (type "vfat"))
           %base-file-systems))
   (swap-devices
