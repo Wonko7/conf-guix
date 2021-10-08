@@ -1,6 +1,3 @@
-;; This is an operating system configuration generated
-;; by the graphical installer.
-
 (use-modules (gnu)
              (gnu packages)
              (gnu packages shells)
@@ -30,7 +27,10 @@
                           ((#:uuids .
                             ((#:vault . "125bf330-ff27-45d1-9cce-1dd96cb14975")
                              (#:efi . "6C21-E416")))))
-                         (#:yggdrasill . 2)))
+                         (#:yggdrasill .
+                          ((#:uuids .
+                            ((#:vault . "077c1391-b290-4921-ae90-f8e3cec68113")
+                             (#:efi . "77DE-0AE2")))))))
 (define (nassq alist ks)
   (fold (lambda (k al) (assq-ref al k)) alist ks))
 
