@@ -25,6 +25,7 @@
     "git-annex"
     "gnupg"
     "gnuplot"
+    "gnutls"
     "graphviz"
     "imagemagick"
     "jq"
