@@ -13,13 +13,14 @@
 (use-modules (nongnu packages linux)
              (nongnu system linux-initrd))
 
-(define host (getenv "HOST"))
+(define host-str (getenv "HOST"))
 
-(cond ((or (string=? host "enterprise")
-           (string=? host "yggdrasill")) (let ()
-                                           (display (string-append "building for " host "\n"))
-                                           (set! host (string->keyword host))))
-      (#t (error (string-append "unknown host: " host "\n") 69)))
+(define host
+(cond ((or (string=? host-str "enterprise")
+           (string=? host-str "yggdrasill")) (let ()
+           (display (string-append "building for " host-str "\n"))
+           (string->keyword host-str)))
+      (#t (error (string-append "unknown host: " host-str "\n") 69))))
 
 (use-service-modules desktop networking ssh xorg docker)
 
@@ -92,11 +93,11 @@
           (type luks-device-mapping))))
   (file-systems
    (cons* (file-system
-           (mount-point "/")
            (device "/dev/mapper/vault")
-           ;; (options "subvol=_live/@guix")
-           (needed-for-boot? #t)
+           (mount-point "/")
            (type "btrfs")
+           (options "subvol=_live/@guix-root")
+           (needed-for-boot? #t)
            (dependencies mapped-devices))
           (file-system
            (mount-point "/mnt/vault")
@@ -106,7 +107,7 @@
           (file-system
            (mount-point "/home")
            (device "/dev/mapper/vault")
-           (options "subvol=_live/@home")
+           (options "subvol=_live/@gentoo-home") ;; tmp
            (type "btrfs")
            (dependencies mapped-devices))
           (file-system
@@ -127,22 +128,16 @@
            (options "subvol=_live/@junkyard")
            (type "btrfs")
            (dependencies mapped-devices))
-          ;; not picked up by swap-devices. as long as root isn't a subvol not useful anyway...
-          ;; (file-system
-          ;;   (mount-point "/swap")
-          ;;   (device "/dev/mapper/vault")
-          ;;   (options "subvol=_live/@swap")
-          ;;   (type "btrfs")
-          ;;   (dependencies mapped-devices))
+          ;; tested on yggdrasill only:
           (file-system
-           (mount-point "/boot/efi")
+           (mount-point "/efi")
            (device (uuid (nassq machine-config `(,host #:uuids #:efi)) 'fat32))
            (type "vfat"))
           %base-file-systems))
   (swap-devices
-   '("/swap/swapfile"))
+   '("/swap/swapfile")) ;; FIXME
   (bootloader
    (bootloader-configuration
     (bootloader grub-efi-bootloader)
-    (target "/boot/efi")
+    (targets '("/efi"))
     (keyboard-layout keyboard-layout))))
