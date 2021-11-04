@@ -130,7 +130,7 @@
            (dependencies mapped-devices))
           ;; tested on yggdrasill only:
           (file-system
-           (mount-point "/efi")
+           (mount-point "/boot")
            (device (uuid (nassq machine-config `(,host #:uuids #:efi)) 'fat32))
            (type "vfat"))
           %base-file-systems))
@@ -139,5 +139,5 @@
   (bootloader
    (bootloader-configuration
     (bootloader grub-efi-bootloader)
-    (targets '("/efi"))
+    (targets '("/boot"))
     (keyboard-layout keyboard-layout))))
