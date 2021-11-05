@@ -13,14 +13,14 @@
 (use-modules (nongnu packages linux)
              (nongnu system linux-initrd))
 
-(define host-str (getenv "HOST"))
-
 (define host
-(cond ((or (string=? host-str "enterprise")
-           (string=? host-str "yggdrasill")) (let ()
-           (display (string-append "building for " host-str "\n"))
-           (string->keyword host-str)))
-      (#t (error (string-append "unknown host: " host-str "\n") 69))))
+  (let ((host-str (getenv "HOST")))
+    (cond ((or (string=? host-str "enterprise")
+               (string=? host-str "yggdrasill"))
+           (begin
+             (display (string-append "building for " host-str "\n"))
+             (string->keyword host-str)))
+          (#t (error (string-append "unknown host: " host-str "\n") 69)))))
 
 (use-service-modules desktop networking ssh xorg docker)
 
@@ -107,7 +107,7 @@
           (file-system
            (mount-point "/home")
            (device "/dev/mapper/vault")
-           (options "subvol=_live/@gentoo-home") ;; tmp
+           (options "subvol=_live/@guix-home")
            (type "btrfs")
            (dependencies mapped-devices))
           (file-system

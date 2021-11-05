@@ -25,7 +25,7 @@
     "git-annex"
     "gnupg"
     "gnuplot"
-    "gnutls"
+    "gnutls" ;; for emacs irc
     "graphviz"
     "imagemagick"
     "jq"
@@ -38,6 +38,7 @@
     "mercurial"
     "onionshare"
     "pandoc"
+    "pantalaimon" ;; matrix -> might not be the right place for this but this is for emacs sooooo I'll think about it.
     "password-store"
     "pavucontrol-qt"
     "pinentry"

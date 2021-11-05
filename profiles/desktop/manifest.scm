@@ -9,6 +9,7 @@
     "feh"
     "gimp"
     "jonaburg-picom"
+    "kdenlive"
     "krita"
     "light"
     "lua" ;; conky
