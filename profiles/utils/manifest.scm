@@ -29,8 +29,8 @@
     "graphviz"
     "imagemagick"
     "jq"
+    "lsof"
     "mksh"
-    "mtr"
     "neofetch"
     "net-tools"
     "ncurses" ;; clear! tic (terminfo)
