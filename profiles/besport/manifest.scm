@@ -4,7 +4,7 @@
    "awscli"
    "docker-cli"
    ;; lang env
-   "ocaml"
+   ;; "ocaml"
    "opam"
    "node"
    ;; db
@@ -12,7 +12,6 @@
    "elasticsearch"
    ;; deps
    "curl"
-   ;; "ocaml-ocurl"
    "openssl"
    "pcre"
    "zlib"
