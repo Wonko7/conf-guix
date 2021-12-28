@@ -5,6 +5,7 @@
     "btrfs-progs" ;; add fs tools
     "cryptsetup"
     "dash"
+    "dosfstools"
     "file"
     "git"
     "mksh"

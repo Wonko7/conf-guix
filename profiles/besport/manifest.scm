@@ -24,4 +24,6 @@
    "m4"
    "ruby-sass"
    "sassc"
+   ;; ocsigen
+   "cairo"
    ))
