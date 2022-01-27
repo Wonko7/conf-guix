@@ -29,10 +29,11 @@
     "graphviz"
     "imagemagick"
     "jq"
+    "lsof"
     "mksh"
-    "mtr"
     "neofetch"
     "net-tools"
+    "ncdu"
     "ncurses" ;; clear! tic (terminfo)
     "nmap"
     "mercurial"
@@ -69,7 +70,7 @@
     "vim-full"
     "w3m"
     "weechat"
-    "xdg-user-dirs"
+    "xdg-user-dirs" ;; check out rust replacement
     "xdg-utils"
     "youtube-dl"
     "zip"

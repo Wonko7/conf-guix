@@ -1,14 +1,17 @@
 (specifications->manifest
   '(
     "breeze"
-    "calibre"
     "cairo" ;; conky
+    "calibre"
     "conky"
     "desktop-file-utils" ;; xdg capture firefox/emacsclient
     "dunst"
     "feh"
+    "freecad" ;; this weighs 400MB
     "gimp"
+    "guvcview" ;; webcam
     "jonaburg-picom"
+    "kdeconnect"
     "kdenlive"
     "krita"
     "light"
@@ -30,8 +33,9 @@
     "rxvt-unicode"
     "scrot"
     "setxkbmap"
+    "xsettingsd"
     "tint2"
-    "transmission"
+    "transmission:gui"
     "unclutter"
     "vlc"
     "w7-st"
