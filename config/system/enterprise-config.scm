@@ -95,8 +95,8 @@
                 %base-user-accounts))
   (packages
    (append
-    (map specification->package '("nss-certs" "isc-dhcp" "iwd" "wireguard-tools" "iproute2" "iw"
-                                  "rsync" "zsh"))
+    (map specification->package '("nss-certs" "isc-dhcp" "wireguard-tools" "iproute2" "iw"
+                                  "skim" "ripgrep" "git" "rsync" "zsh"))
     %base-packages))
   (services
    (cons* (service xfce-desktop-service-type)
