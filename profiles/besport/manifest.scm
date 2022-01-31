@@ -4,7 +4,7 @@
    "awscli"
    "docker-cli"
    ;; lang env
-   "ocaml"
+   ;; "ocaml"
    "opam"
    "node"
    ;; db
