@@ -1,60 +1,75 @@
 (specifications->manifest
   '(
-    "breeze"
-    "cairo" ;; conky
-    "calibre"
-    "conky"
-    "desktop-file-utils" ;; xdg capture firefox/emacsclient
-    "dunst"
+    ;;;; img viewers
     "feh"
-    "freecad" ;; this weighs 400MB
+    "ristretto"
+    ;;;; img editors
     "gimp"
-    "guvcview" ;; webcam
-    "jonaburg-picom"
-    "kdeconnect"
     "kdenlive"
     "krita"
-    "light"
-    "lua" ;; conky
-    "lua-lgi" ;; conky
-    "lxqt-panel"
-    "lxqt-qtplugin"
-    "lxrandr"
-    "pulseaudio" ;; for pactl
-    "mesa-utils"
+    ;;;; screenshot:
+    "scrot"
+    "xfce4-screenshooter"
+    ;;;; video
     "mpv"
-    "oxygen-icons"
+    "vlc"
+    ;;;; webcam
+    "guvcview"
+    ;;;; ebooks & pdf
+    "calibre"
+    "okular" ;; 280Mb
+    "zathura"
+    "zathura-ps"
+    "zathura-pdf-mupdf"
+    "xournal" ;; shitty pdf editor
+    ;;;; desktop stuff
+    "ddcutil" ;; monitor settings
+    "desktop-file-utils" ;; xdg capture firefox/emacsclient
+    "dunst"
+    "jonaburg-picom"
+    "kdeconnect"
+    "light"
+    "lxqt-panel"
+    "lxrandr"
     "pscircle"
+    "pulseaudio" ;; for pactl
     "qlipper"
-    "qtbase"
-    "qtsvg"
     "redshift"
     "rofi"
-    "rxvt-unicode"
-    "scrot"
-    "setxkbmap"
-    "xsettingsd"
     "tint2"
-    "transmission:gui"
     "unclutter"
-    "vlc"
+    "xrandr"
+    "xscreensaver"
+    ;; terms
+    "rxvt-unicode"
     "w7-st"
-    "wireshark"
+    ;;;; xorg stuff
+    "setxkbmap"
     "wmctrl"
     "xbindkeys"
     "xclip"
     "xdotool"
     "xev"
     "xeyes"
-    "xfce4-screenshooter"
     "xinput"
     "xmodmap"
-    "xournal"
     "xprop"
-    "xrandr"
-    "xscreensaver"
     "xset"
-    "zathura"
-    "zathura-ps"
-    "zathura-pdf-mupdf"
+    ;;;; pirate radio
+    "wireshark"
+    "transmission:gui"
+    ;;;; misc:
+    ;;"freecad" ;; this weighs 400MB
+    ;; "cairo" ;; conky
+    ;; "lua" ;; conky
+    ;; "lua-lgi" ;; conky
+    ;; "lxqt-qtplugin"
+    ;;;; themes
+    "breeze"
+    "oxygen-icons"
+    "xsettingsd" ;; ?
+    ;;;; deps
+    "mesa-utils" ;; ?
+    "qtbase"
+    "qtsvg"
     ))

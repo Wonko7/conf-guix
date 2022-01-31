@@ -12,7 +12,7 @@
    "docker-compose"
    "guile-colorized"
    "perl"
-   "ocaml"
+   ;; "ocaml"
    ;;"rust-cargo"
    "rust"
    "rust:cargo"

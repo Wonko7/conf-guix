@@ -95,8 +95,8 @@
                 %base-user-accounts))
   (packages
    (append
-    (map specification->package '("nss-certs" "isc-dhcp" "iwd" "wireguard-tools" "iproute2" "iw"
-                                  "rsync" "zsh"))
+    (map specification->package '("nss-certs" "isc-dhcp" "wireguard-tools" "iproute2" "iw"
+                                  "skim" "ripgrep" "git" "rsync" "zsh"))
     %base-packages))
   (services
    (cons* (service xfce-desktop-service-type)
@@ -160,7 +160,13 @@
           (file-system
            (mount-point "/home")
            (device "/dev/mapper/vault")
-           (options "subvol=_live/@guix-home")
+           (options "subvol=_live/@guix-home") ;; gentoo-home for ygg.
+           (type "btrfs")
+           (dependencies mapped-devices))
+          (file-system
+           (mount-point "/code")
+           (device "/dev/mapper/vault")
+           (options "subvol=_live/@code")
            (type "btrfs")
            (dependencies mapped-devices))
           (file-system

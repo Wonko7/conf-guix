@@ -10,6 +10,8 @@
     "torsocks"
     "netcat-openbsd"
     "nftables"
+    "nmap"
+    ;;"wireshark"
     "inetutils" ;; hostname, telnet, ftp
     "iftop"
     "mtr"
