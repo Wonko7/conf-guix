@@ -160,7 +160,13 @@
           (file-system
            (mount-point "/home")
            (device "/dev/mapper/vault")
-           (options "subvol=_live/@guix-home")
+           (options "subvol=_live/@guix-home") ;; gentoo-home for ygg.
+           (type "btrfs")
+           (dependencies mapped-devices))
+          (file-system
+           (mount-point "/code")
+           (device "/dev/mapper/vault")
+           (options "subvol=_live/@code")
            (type "btrfs")
            (dependencies mapped-devices))
           (file-system
