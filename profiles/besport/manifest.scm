@@ -8,7 +8,7 @@
    "opam"
    "node"
    ;; db
-   "postgresql"
+   "postgresql@13"
    "elasticsearch"
    ;; deps
    "curl"
