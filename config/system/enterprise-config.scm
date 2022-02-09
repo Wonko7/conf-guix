@@ -37,6 +37,7 @@
 (define hostname (getenv "HOST"))
 (define host
   (cond ((or (string=? hostname "enterprise")
+             (string=? hostname "nostromo")
              (string=? hostname "yggdrasill"))
          (begin
            (display (string-append "building for " hostname "\n"))
@@ -61,14 +62,69 @@
 ;; (define secrets '((#:wireguard . (#:public . ))))
 
 (define machine-config
-  (let ((initial  '((#:enterprise .
+  (let ((desktop-fs (cons* (file-system
+                            (device "/dev/mapper/vault")
+                            (mount-point "/")
+                            (type "btrfs")
+                            (options "subvol=_live/@guix-root")
+                            (needed-for-boot? #t)
+                            (dependencies mapped-devices))
+                           (file-system
+                            (mount-point "/mnt/vault")
+                            (device "/dev/mapper/vault")
+                            (type "btrfs")
+                            (dependencies mapped-devices))
+                           (file-system
+                            (mount-point "/home")
+                            (device "/dev/mapper/vault")
+                            (options "subvol=_live/@guix-home") ;; gentoo-home for ygg.
+                            (type "btrfs")
+                            (dependencies mapped-devices))
+                           (file-system
+                            (mount-point "/code")
+                            (device "/dev/mapper/vault")
+                            (options "subvol=_live/@code")
+                            (type "btrfs")
+                            (dependencies mapped-devices))
+                           (file-system
+                            (mount-point "/data")
+                            (device "/dev/mapper/vault")
+                            (options "subvol=_live/@data")
+                            (type "btrfs")
+                            (dependencies mapped-devices))
+                           (file-system
+                            (mount-point "/work")
+                            (device "/dev/mapper/vault")
+                            (options "subvol=_live/@work")
+                            (type "btrfs")
+                            (dependencies mapped-devices))
+                           (file-system
+                            (mount-point "/junkyard")
+                            (device "/dev/mapper/vault")
+                            (options "subvol=_live/@junkyard")
+                            (type "btrfs")
+                            (dependencies mapped-devices))
+                           ;; tested on yggdrasill only:
+                           (file-system
+                            (mount-point "/boot")
+                            (device (uuid (nassq machine-config `(,host #:uuids #:efi)) 'fat32))
+                            (type "vfat"))
+                           %base-file-systems))
+        (initial  '((#:enterprise .
                      ((#:uuids .
                        ((#:vault . "125bf330-ff27-45d1-9cce-1dd96cb14975")
-                        (#:efi . "6C21-E416")))))
+                        (#:efi . "6C21-E416")))
+                      (#:fs . desktop-fs)))
+                    (#:nostromo .
+                     ((#:uuids .
+                       ((#:vault . "3fc0b6a1-7480-45fb-99ec-734039bdf7dc")
+                        (#:efi . "802F-0358")))
+                      (#:fs . remote-fs)))
                     (#:yggdrasill .
                      ((#:uuids .
                        ((#:vault . "077c1391-b290-4921-ae90-f8e3cec68113")
-                        (#:efi . "77DE-0AE2"))))))))
+                        (#:efi . "77DE-0AE2")))
+                      (#:fs . desktop-fs))))))
     initial))
 
 (define (nassq alist ks)
@@ -144,6 +200,7 @@
            (uuid (nassq machine-config `(,host #:uuids #:vault))))
           (target "vault")
           (type luks-device-mapping))))
+
   (file-systems
    (cons* (file-system
            (device "/dev/mapper/vault")
