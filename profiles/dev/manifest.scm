@@ -1,7 +1,7 @@
 (specifications->manifest
  '(
-   "clojure"
-   "clojure-tools"
+   ;; "clojure"
+   ;; "clojure-tools"
    "gcc-toolchain"
    "gdb"
    "gnuplot"
@@ -16,4 +16,6 @@
    ;;"rust-cargo"
    "rust"
    "rust:cargo"
+   ;; build man db:
+   "man-db"
    ))

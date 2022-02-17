@@ -25,4 +25,6 @@
    "sassc"
    ;; ocsigen
    "cairo"
+   ;; build man db:
+   "man-db"
    ))

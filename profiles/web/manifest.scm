@@ -10,4 +10,6 @@
    "nftables"
    "weechat"
    "onionshare"
+   ;; build man db:
+   "man-db"
    ))

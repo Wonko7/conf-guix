@@ -1,75 +1,77 @@
 (specifications->manifest
-  '(
+ '(
     ;;;; img viewers
-    "feh"
-    "ristretto"
+   "feh"
+   "ristretto"
     ;;;; img editors
-    "gimp"
-    "kdenlive"
-    "krita"
+   "gimp"
+   "kdenlive"
+   "krita"
     ;;;; screenshot:
-    "scrot"
-    "xfce4-screenshooter"
+   "scrot"
+   "xfce4-screenshooter"
     ;;;; video
-    "mpv"
-    "vlc"
+   "mpv"
+   "vlc"
     ;;;; webcam
-    "guvcview"
+   "guvcview"
     ;;;; ebooks & pdf
-    "calibre"
-    "okular" ;; 280Mb
-    "zathura"
-    "zathura-ps"
-    "zathura-pdf-mupdf"
-    "xournal" ;; shitty pdf editor
+   "calibre"
+   "okular" ;; 280Mb
+   "zathura"
+   "zathura-ps"
+   "zathura-pdf-mupdf"
+   "xournal" ;; shitty pdf editor
     ;;;; desktop stuff
-    "ddcutil" ;; monitor settings
-    "desktop-file-utils" ;; xdg capture firefox/emacsclient
-    "dunst"
-    "jonaburg-picom"
-    "kdeconnect"
-    "light"
-    "lxqt-panel"
-    "lxrandr"
-    "pscircle"
-    "pulseaudio" ;; for pactl
-    "qlipper"
-    "redshift"
-    "rofi"
-    "tint2"
-    "unclutter"
-    "xrandr"
-    "xscreensaver"
-    ;; terms
-    "rxvt-unicode"
-    "w7-st"
+   "ddcutil" ;; monitor settings
+   "desktop-file-utils" ;; xdg capture firefox/emacsclient
+   "dunst"
+   "jonaburg-picom"
+   "kdeconnect"
+   "light"
+   "lxqt-panel"
+   "lxrandr"
+   "pscircle"
+   "pulseaudio" ;; for pactl
+   "qlipper"
+   "redshift"
+   "rofi"
+   "tint2"
+   "unclutter"
+   "xrandr"
+   "xscreensaver"
+   ;; terms
+   "rxvt-unicode"
+   "w7-st"
     ;;;; xorg stuff
-    "setxkbmap"
-    "wmctrl"
-    "xbindkeys"
-    "xclip"
-    "xdotool"
-    "xev"
-    "xeyes"
-    "xinput"
-    "xmodmap"
-    "xprop"
-    "xset"
+   "setxkbmap"
+   "wmctrl"
+   "xbindkeys"
+   "xclip"
+   "xdotool"
+   "xev"
+   "xeyes"
+   "xinput"
+   "xmodmap"
+   "xprop"
+   "xset"
     ;;;; pirate radio
-    "wireshark"
-    "transmission:gui"
+   "wireshark"
+   "transmission:gui"
     ;;;; misc:
-    ;;"freecad" ;; this weighs 400MB
-    ;; "cairo" ;; conky
-    ;; "lua" ;; conky
-    ;; "lua-lgi" ;; conky
-    ;; "lxqt-qtplugin"
+   ;;"freecad" ;; this weighs 400MB
+   ;; "cairo" ;; conky
+   ;; "lua" ;; conky
+   ;; "lua-lgi" ;; conky
+   ;; "lxqt-qtplugin"
     ;;;; themes
-    "breeze"
-    "oxygen-icons"
-    "xsettingsd" ;; ?
+   "breeze"
+   "oxygen-icons"
+   "xsettingsd" ;; ?
     ;;;; deps
-    "mesa-utils" ;; ?
-    "qtbase"
-    "qtsvg"
-    ))
+   "mesa-utils" ;; ?
+   "qtbase"
+   "qtsvg"
+   ;; build man db:
+   "man-db"
+   ))
