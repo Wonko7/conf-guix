@@ -43,23 +43,6 @@
            (string->keyword hostname)))
         (#t (error (string-append "unknown host: " hostname "\n") 69))))
 
-;; (define pass-get (lambda* (path #:optional hostname)
-;;                    (let ((path (if hostname
-;;                                    (string-append "fleet/" hostname "/" path)
-;;                                    path)))
-;;                      (display path)
-;;                      (call-command-with-output-error-to-string (string-append "pass show " path)))))
-
-;; (let ((t1 '((#:lol . ((#:kkt . "ohoh"))))))
-;;   (display (nassq '(#:lol #:kkt) t1)))
-;; (fold (lambda (k wg-conf)
-;;         (alist-cons k (pass-get (keyword->string k) hostname) wg-conf))
-;;       '()
-;;       '(#:public #:private #:psk))
-;; (iota 5)
-
-;; (define secrets '((#:wireguard . (#:public . ))))
-
 (define machine-config
   (let ((initial  '((#:enterprise .
                      ((#:uuids .
@@ -91,7 +74,15 @@
                   (home-directory "/home/wjc")
                   (shell (file-append zsh "/bin/zsh"))
                   (supplementary-groups
-                    '("docker" "wheel" "netdev" "audio" "video")))
+                   '("docker" "wheel" "netdev" "audio" "video")))
+                (user-account
+                  (name "tina")
+                  (comment "Tina")
+                  (group "users")
+                  (home-directory "/home/tina")
+                  (shell (file-append zsh "/bin/zsh"))
+                  (supplementary-groups
+                    '("netdev" "audio" "video")))
                 %base-user-accounts))
   (packages
    (append
@@ -103,34 +94,18 @@
           (service openssh-service-type)
           (service tor-service-type)
           (service docker-service-type)
-          (service slim-service-type
-                   (slim-configuration (display ":0")
-                                       (vt "vt7")
-                                       (auto-login? #t)
-                                       (default-user "wjc")
-                                       (xorg-configuration (xorg-configuration
-                                                            (keyboard-layout keyboard-layout)))))
           (service guix-publish-service-type
                    (guix-publish-configuration
                     (host "0.0.0.0")
                     (port 1691)
                     (advertise? #t)))
-          ;; (simple-service 'wireguard-module
-          ;;                 kernel-module-loader-service-type
-          ;;                 '("wireguard"))
-          ;; (service wireguard-service-type
-          ;;          (wireguard-configuration
-          ;;           (peers
-          ;;            (list
-          ;;             (wireguard-peer
-          ;;              (name "my-peer")
-          ;;              (endpoint "my.wireguard.com:51820")
-          ;;              (public-key "hzpKg9X1yqu1axN6iJp0mWf6BZGo8m1wteKwtTmDGF4=")
-          ;;              (allowed-ips '("10.0.0.2/32")))))))
           (modify-services %desktop-services
-                           (delete gdm-service-type))))
-
-  ;;(kernel-loadable-modules (list wireguard-linux-compat));; FIXME
+                           (gdm-service-type config =>
+                                             (gdm-configuration (inherit config)
+                                                                (xorg-configuration (xorg-configuration
+                                                                                     (keyboard-layout keyboard-layout)))
+                                                                (auto-login? #t)
+                                                                (default-user "wjc"))))))
 
   (setuid-programs
    (cons*
@@ -194,7 +169,10 @@
            (type "vfat"))
           %base-file-systems))
   (swap-devices
-   '("/mnt/vault/swap/swapfile")) ;; FIXME
+   (list
+    (swap-space
+     (target "/mnt/vault/swap/swapfile")
+     (dependencies mapped-devices))))
   (bootloader
    (bootloader-configuration
     (bootloader grub-efi-bootloader)
