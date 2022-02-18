@@ -22,6 +22,7 @@
    "hunspell-dict-en-gb-ize"
    "git"
    "git-annex"
+   "glances"
    "gnupg"
    "gnuplot"
    "gnutls" ;; for emacs irc

@@ -46,11 +46,13 @@
     ;;;; xorg stuff
    "setxkbmap"
    "wmctrl"
+   "xauth"
    "xbindkeys"
    "xclip"
    "xdotool"
    "xev"
    "xeyes"
+   "xhost"
    "xinput"
    "xmodmap"
    "xprop"
