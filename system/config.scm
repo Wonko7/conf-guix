@@ -35,6 +35,7 @@
 (use-service-modules desktop networking ssh xorg docker)
 
 (define hostname (getenv "HOST"))
+
 (define host
   (cond ((or (string=? hostname "enterprise")
              (string=? hostname "yggdrasill"))
@@ -87,7 +88,7 @@
   (packages
    (append
     (map specification->package '("nss-certs" "isc-dhcp" "wireguard-tools" "iproute2" "iw"
-                                  "skim" "ripgrep" "git" "rsync" "zsh"))
+                                  "skim" "ripgrep" "git" "rsync" "zsh")) ;; TODO remove skim & rg once full emacs OS is operational.
     %base-packages))
   (services
    (cons* (service xfce-desktop-service-type)
@@ -100,6 +101,14 @@
                     (port 1691)
                     (advertise? #t)))
           (modify-services %desktop-services
+                           (guix-service-type config => (guix-configuration
+                                                         (inherit config)
+                                                         (substitute-urls
+                                                          (append (list "https://substitutes.nonguix.org")
+                                                                  %default-substitute-urls))
+                                                         (authorized-keys
+                                                          (append (list (local-file "./data/substitutes/nonguix.pub"))
+                                                                  %default-authorized-guix-keys))))
                            (gdm-service-type config =>
                                              (gdm-configuration (inherit config)
                                                                 (xorg-configuration (xorg-configuration
