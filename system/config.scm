@@ -75,7 +75,7 @@
                   (home-directory "/home/wjc")
                   (shell (file-append zsh "/bin/zsh"))
                   (supplementary-groups
-                   '("docker" "wheel" "netdev" "audio" "video")))
+                   '("lp" "docker" "wheel" "netdev" "audio" "video")))
                 (user-account
                   (name "tina")
                   (comment "Tina")
@@ -100,8 +100,10 @@
                     (host "0.0.0.0")
                     (port 1691)
                     (advertise? #t)))
+          (bluetooth-service #:auto-enable? #t)
           (modify-services %desktop-services
-                           (guix-service-type config => (guix-configuration
+                           (guix-service-type config =>
+                                              (guix-configuration
                                                          (inherit config)
                                                          (substitute-urls
                                                           (append (list "https://substitutes.nonguix.org")
